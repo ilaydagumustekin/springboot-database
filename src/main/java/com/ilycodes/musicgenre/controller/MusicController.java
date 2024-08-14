@@ -1,7 +1,9 @@
 package com.ilycodes.musicgenre.controller;
 
+import com.ilycodes.musicgenre.dto.MusicRequest;
 import com.ilycodes.musicgenre.entity.Music;
 import com.ilycodes.musicgenre.service.MusicService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,10 @@ public class MusicController {
     public ResponseEntity<Music> createMusic(@RequestBody Music music) {
         Music savedMusic = musicService.save(music);
         return ResponseEntity.ok(savedMusic);
+    }
+    @PostMapping("/musics")
+    public ResponseEntity<Music> createMusic(@RequestBody @Valid MusicRequest musicRequest) {
+       return musicService.saveMusic(musicRequest);
     }
 
     @PutMapping("/{id}")

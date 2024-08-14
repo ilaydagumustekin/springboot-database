@@ -1,10 +1,12 @@
 package com.ilycodes.musicgenre.service;
 
 
-import com.ilycodes.musicgenre.dto.MusicDtoConverter;
+import com.ilycodes.musicgenre.converter.MusicDtoConverter;
+import com.ilycodes.musicgenre.dto.MusicRequest;
 import com.ilycodes.musicgenre.entity.Music;
 import com.ilycodes.musicgenre.repository.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,7 @@ public class MusicService {
     @Autowired
     private MusicRepository musicRepository;
     private MusicDtoConverter musicDtoConverter;
+
 
     public List<Music> findAll() {
         return (List<Music>) musicRepository.findAll();
@@ -34,5 +37,9 @@ public class MusicService {
 
     public List<Music> findByGenreId(Long genreId) {
         return musicRepository.findByGenreId(genreId);
+    }
+
+    public ResponseEntity<Music> saveMusic(MusicRequest musicRequest) {
+        return null;
     }
 }

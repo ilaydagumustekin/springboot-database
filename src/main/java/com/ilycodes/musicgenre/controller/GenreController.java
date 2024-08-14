@@ -1,7 +1,9 @@
 package com.ilycodes.musicgenre.controller;
 
+import com.ilycodes.musicgenre.dto.GenreRequest;
 import com.ilycodes.musicgenre.entity.Genre;
 import com.ilycodes.musicgenre.service.GenreService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,10 @@ public class GenreController {
     public ResponseEntity<Genre> createGenre(@RequestBody Genre genre) {
         Genre savedGenre = genreService.save(genre);
         return new ResponseEntity<>(savedGenre, HttpStatus.CREATED);
+    }
+    @PostMapping("/genres")
+    public ResponseEntity<Genre> createGenre(@RequestBody @Valid GenreRequest genreRequest) {
+        return genreService.saveGenre(genreRequest);
     }
 
     @PutMapping("/{id}")
