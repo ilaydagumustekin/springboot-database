@@ -5,10 +5,12 @@ import com.ilycodes.musicgenre.dto.GenreRequest;
 import com.ilycodes.musicgenre.dto.GenreResponse;
 import com.ilycodes.musicgenre.entity.Genre;
 import com.ilycodes.musicgenre.repository.GenreRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.beans.Transient;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,7 @@ public class GenreService {
         return genreDtoConverter.convertToDto(genre);
     }
 
+    @Transactional
     public List<Genre> findAll() {
         return genreRepository.findAll();
     }
